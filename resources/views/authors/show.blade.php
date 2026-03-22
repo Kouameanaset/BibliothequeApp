@@ -1,37 +1,30 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Détail de l'auteur</title>
-</head>
-<body>
-<h1>Détail de l'auteur</h1>
+<x-layout>
+    <h1>{{ __('messages.author_details') }}</h1>
 
-<p>
-    <a href="{{ route('authors.index') }}">Retour à la liste</a>
-</p>
+    <p>
+        <a href="{{ route('authors.index') }}">{{ __('messages.back') }}</a>
+    </p>
 
-<p><strong>Nom :</strong> {{ $author->last_name }}</p>
-<p><strong>Prénom :</strong> {{ $author->first_name }}</p>
-<p><strong>Date de naissance :</strong> {{ $author->birth_date }}</p>
-<p><strong>Biographie :</strong> {{ $author->biography }}</p>
+    <p><strong>{{ __('messages.last_name') }} :</strong> {{ $author->last_name }}</p>
+    <p><strong>{{ __('messages.first_name') }} :</strong> {{ $author->first_name }}</p>
+    <p><strong>{{ __('messages.birth_date') }} :</strong> {{ $author->birth_date }}</p>
+    <p><strong>{{ __('messages.biography') }} :</strong> {{ $author->biography }}</p>
 
-<h2>Livres associés</h2>
+    <h2>{{ __('messages.associated_books') }}</h2>
 
-@forelse($author->books as $book)
-    <p>{{ $book->title }} ({{ $book->publication_year }})</p>
-@empty
-    <p>Aucun livre pour cet auteur.</p>
-@endforelse
+    @forelse($author->books as $book)
+        <p>{{ $book->title }} ({{ $book->publication_year }})</p>
+    @empty
+        <p>{{ __('messages.no_books_for_author') }}</p>
+    @endforelse
 
-<p>
-    <a href="{{ route('authors.edit', $author) }}">Modifier</a>
-</p>
+    <p>
+        <a href="{{ route('authors.edit', $author) }}">{{ __('messages.edit') }}</a>
+    </p>
 
-<form action="{{ route('authors.destroy', $author) }}" method="POST">
-    @csrf
-    @method('DELETE')
-    <button type="submit">Supprimer</button>
-</form>
-</body>
-</html>
+    <form action="{{ route('authors.destroy', $author) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <x-button type="submit">{{ __('messages.delete') }}</x-button>
+    </form>
+</x-layout>

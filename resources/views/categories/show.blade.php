@@ -1,34 +1,27 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Détail de la catégorie</title>
-</head>
-<body>
-<h1>Détail de la catégorie</h1>
+<x-layout>
+    <h1>{{ __('messages.category_details') }}</h1>
 
-<p>
-    <a href="{{ route('categories.index') }}">Retour à la liste</a>
-</p>
+    <p>
+        <a href="{{ route('categories.index') }}">{{ __('messages.back') }}</a>
+    </p>
 
-<p><strong>Nom :</strong> {{ $category->name }}</p>
+    <p><strong>{{ __('messages.name') }} :</strong> {{ $category->name }}</p>
 
-<h2>Livres associés</h2>
+    <h2>{{ __('messages.associated_books') }}</h2>
 
-@forelse($category->books as $book)
-    <p>{{ $book->title }} ({{ $book->publication_year }})</p>
-@empty
-    <p>Aucun livre dans cette catégorie.</p>
-@endforelse
+    @forelse($category->books as $book)
+        <p>{{ $book->title }} ({{ $book->publication_year }})</p>
+    @empty
+        <p>{{ __('messages.no_books_for_category') }}</p>
+    @endforelse
 
-<p>
-    <a href="{{ route('categories.edit', $category) }}">Modifier</a>
-</p>
+    <p>
+        <a href="{{ route('categories.edit', $category) }}">{{ __('messages.edit') }}</a>
+    </p>
 
-<form action="{{ route('categories.destroy', $category) }}" method="POST">
-    @csrf
-    @method('DELETE')
-    <button type="submit">Supprimer</button>
-</form>
-</body>
-</html>
+    <form action="{{ route('categories.destroy', $category) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <x-button type="submit">{{ __('messages.delete') }}</x-button>
+    </form>
+</x-layout>

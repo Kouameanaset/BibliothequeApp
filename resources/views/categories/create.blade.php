@@ -1,37 +1,21 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ajouter une catégorie</title>
-</head>
-<body>
-<h1>Ajouter une catégorie</h1>
+<x-layout>
+    <h1>{{ __('messages.add_category') }}</h1>
 
-<p>
-    <a href="{{ route('categories.index') }}">Retour à la liste</a>
-</p>
+    <p>
+        <a href="{{ route('categories.index') }}">{{ __('messages.back') }}</a>
+    </p>
 
-@if ($errors->any())
-    <div style="color: red;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    <form action="{{ route('categories.store') }}" method="POST">
+        @csrf
 
-<form action="{{ route('categories.store') }}" method="POST">
-    @csrf
+        <x-input
+            name="name"
+            :label="__('messages.name')"
+        />
+        <x-error field="name" />
 
-    <div>
-        <label for="name">Nom</label><br>
-        <input type="text" name="name" id="name" value="{{ old('name') }}">
-    </div>
+        <br>
 
-    <br>
-
-    <button type="submit">Enregistrer</button>
-</form>
-</body>
-</html>
+        <x-button type="submit">{{ __('messages.save') }}</x-button>
+    </form>
+</x-layout>

@@ -1,80 +1,71 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier un livre</title>
-</head>
-<body>
-<h1>Modifier un livre</h1>
+<x-layout>
+    <h1>{{ __('messages.edit_book') }}</h1>
 
-<p>
-    <a href="{{ route('books.index') }}">Retour à la liste</a>
-</p>
+    <p>
+        <a href="{{ route('books.index') }}">{{ __('messages.back') }}</a>
+    </p>
 
-@if ($errors->any())
-    <div style="color: red;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    <form action="{{ route('books.update', $book) }}" method="POST">
+        @csrf
+        @method('PUT')
 
-<form action="{{ route('books.update', $book) }}" method="POST">
-    @csrf
-    @method('PUT')
+        <x-input
+            name="title"
+            :label="__('messages.title')"
+            :value="$book->title"
+        />
+        <x-error field="title" />
 
-    <div>
-        <label for="title">Titre</label><br>
-        <input type="text" name="title" id="title" value="{{ old('title', $book->title) }}">
-    </div>
+        <br>
 
-    <br>
+        <div>
+            <label for="description">{{ __('messages.description') }}</label><br>
+            <textarea name="description" id="description" rows="5" cols="40">{{ old('description', $book->description) }}</textarea>
+            <x-error field="description" />
+        </div>
 
-    <div>
-        <label for="description">Description</label><br>
-        <textarea name="description" id="description" rows="5" cols="40">{{ old('description', $book->description) }}</textarea>
-    </div>
+        <br>
 
-    <br>
+        <x-input
+            name="publication_year"
+            :label="__('messages.publication_year')"
+            type="number"
+            :value="$book->publication_year"
+        />
+        <x-error field="publication_year" />
 
-    <div>
-        <label for="publication_year">Année de publication</label><br>
-        <input type="number" name="publication_year" id="publication_year" value="{{ old('publication_year', $book->publication_year) }}">
-    </div>
+        <br>
 
-    <br>
+        <div>
+            <label for="author_id">{{ __('messages.author') }}</label><br>
+            <select name="author_id" id="author_id">
+                <option value="">{{ __('messages.choose_author') }}</option>
+                @foreach($authors as $author)
+                    <option value="{{ $author->id }}" {{ old('author_id', $book->author_id) == $author->id ? 'selected' : '' }}>
+                        {{ $author->first_name }} {{ $author->last_name }}
+                    </option>
+                @endforeach
+            </select>
+            <x-error field="author_id" />
+        </div>
 
-    <div>
-        <label for="author_id">Auteur</label><br>
-        <select name="author_id" id="author_id">
-            <option value="">Choisir un auteur</option>
-            @foreach($authors as $author)
-                <option value="{{ $author->id }}" {{ old('author_id', $book->author_id) == $author->id ? 'selected' : '' }}>
-                    {{ $author->first_name }} {{ $author->last_name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
+        <br>
 
-    <br>
+        <div>
+            <label for="category_id">{{ __('messages.category') }}</label><br>
+            <select name="category_id" id="category_id">
+                <option value="">{{ __('messages.choose_category') }}</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ old('category_id', $book->category_id) == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+            <x-error field="category_id" />
+        </div>
 
-    <div>
-        <label for="category_id">Catégorie</label><br>
-        <select name="category_id" id="category_id">
-            <option value="">Choisir une catégorie</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}" {{ old('category_id', $book->category_id) == $category->id ? 'selected' : '' }}>
-                    {{ $category->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
+        <br>
 
-    <br>
-
-    <button type="submit">Mettre à jour</button>
-</form>
-</body>
-</html>
+        <x-button type="submit">{{ __('messages.update') }}</x-button>
+    </form>
+</x-layout>

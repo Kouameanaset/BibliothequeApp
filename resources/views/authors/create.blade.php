@@ -1,58 +1,46 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ajouter un auteur</title>
-</head>
-<body>
-<h1>Ajouter un auteur</h1>
+<x-layout>
+    <h1>{{ __('messages.add_author') }}</h1>
 
-<p>
-    <a href="{{ route('authors.index') }}">Retour à la liste</a>
-</p>
+    <p>
+        <a href="{{ route('authors.index') }}">{{ __('messages.back') }}</a>
+    </p>
 
-@if ($errors->any())
-    <div style="color: red;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    <form action="{{ route('authors.store') }}" method="POST">
+        @csrf
 
-<form action="{{ route('authors.store') }}" method="POST">
-    @csrf
+        <x-input
+            name="last_name"
+            :label="__('messages.last_name')"
+        />
+        <x-error field="last_name" />
 
-    <div>
-        <label for="last_name">Nom</label><br>
-        <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}">
-    </div>
+        <br>
 
-    <br>
+        <x-input
+            name="first_name"
+            :label="__('messages.first_name')"
+        />
+        <x-error field="first_name" />
 
-    <div>
-        <label for="first_name">Prénom</label><br>
-        <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}">
-    </div>
+        <br>
 
-    <br>
+        <div>
+            <label for="biography">{{ __('messages.biography') }}</label><br>
+            <textarea name="biography" id="biography" rows="5" cols="40">{{ old('biography') }}</textarea>
+            <x-error field="biography" />
+        </div>
 
-    <div>
-        <label for="biography">Biographie</label><br>
-        <textarea name="biography" id="biography" rows="5" cols="40">{{ old('biography') }}</textarea>
-    </div>
+        <br>
 
-    <br>
+        <x-input
+            name="birth_date"
+            :label="__('messages.birth_date')"
+            type="date"
+        />
+        <x-error field="birth_date" />
 
-    <div>
-        <label for="birth_date">Date de naissance</label><br>
-        <input type="date" name="birth_date" id="birth_date" value="{{ old('birth_date') }}">
-    </div>
+        <br>
 
-    <br>
-
-    <button type="submit">Enregistrer</button>
-</form>
-</body>
-</html>
+        <x-button type="submit">{{ __('messages.save') }}</x-button>
+    </form>
+</x-layout>

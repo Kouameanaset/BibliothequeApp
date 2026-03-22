@@ -1,38 +1,23 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier une catégorie</title>
-</head>
-<body>
-<h1>Modifier une catégorie</h1>
+<x-layout>
+    <h1>{{ __('messages.edit_category') }}</h1>
 
-<p>
-    <a href="{{ route('categories.index') }}">Retour à la liste</a>
-</p>
+    <p>
+        <a href="{{ route('categories.index') }}">{{ __('messages.back') }}</a>
+    </p>
 
-@if ($errors->any())
-    <div style="color: red;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    <form action="{{ route('categories.update', $category) }}" method="POST">
+        @csrf
+        @method('PUT')
 
-<form action="{{ route('categories.update', $category) }}" method="POST">
-    @csrf
-    @method('PUT')
+        <x-input
+            name="name"
+            :label="__('messages.name')"
+            :value="$category->name"
+        />
+        <x-error field="name" />
 
-    <div>
-        <label for="name">Nom</label><br>
-        <input type="text" name="name" id="name" value="{{ old('name', $category->name) }}">
-    </div>
+        <br>
 
-    <br>
-
-    <button type="submit">Mettre à jour</button>
-</form>
-</body>
-</html>
+        <x-button type="submit">{{ __('messages.update') }}</x-button>
+    </form>
+</x-layout>
