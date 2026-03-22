@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
@@ -33,8 +35,9 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
+        /*
         $data = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -42,10 +45,10 @@ class BookController extends Controller
             'author_id' => 'required',
             'category_id' => 'required',
         ]);
+        */
 
-        Book::create($data);
-
-        return redirect()->route('books.index');
+        Book::create($request->validated());
+        return redirect()->route('books.index')->with('success', 'Livre ajouté avec succès.');
     }
 
     /**
@@ -72,8 +75,9 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $book)
     {
+        /*
         $data = $request->validate([
             'title' => ['required'],
             'description' => ['required'],
@@ -81,9 +85,9 @@ class BookController extends Controller
             'author_id' => ['required', 'exists:authors,id'],
             'category_id' => ['required', 'exists:categories,id'],
         ]);
+        */
 
-        $book->update($data);
-
+        $book->update($request->validated());
         return redirect()->route('books.index')->with('success', 'Livre modifié avec succès.');
     }
 
