@@ -1,61 +1,26 @@
 <x-layout>
-    <h1>{{__('messages.add_book')}}</h1>
+    <div class="max-w-xl mx-auto">
+        <h1 class="text-4xl font-bold mb-8">{{ __('messages.add_book')}}</h1>
+        <a href="{{ route('books.index') }}" class="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 mb-6">← {{ __('messages.back') }}</a>
 
-    <p>
-        <a href="{{ route('books.index') }}">{{__('messages.back')}}</a>
-    </p>
+        <form action="{{ route('books.store') }}" method="POST" class="bg-white rounded-3xl shadow-xl p-10">
+            @csrf
 
-    <form action="{{ route('books.store') }}" method="POST">
-        @csrf
+            <x-input name="title" :label="__('messages.title')" />
+            <x-error field="title" />
 
-        <x-input name="title" label="{{__('messages.title')}}" />
-        <x-error field="title" />
-
-        <br>
-
-        <div>
-            <label for="description">{{__('messages.description')}}</label><br>
-            <textarea name="description" id="description" rows="5" cols="40">{{ old('description') }}</textarea>
-            <x-error field="description" />
-        </div>
-
-        <br>
-
-        <x-input name="publication_year" label="{{__('messages.publication_year')}}" type="number" />
-        <x-error field="publication_year" />
-
-        <br>
-
-        <div>
-            <label for="author_id">{{__('messages.author')}}</label><br>
-            <select name="author_id" id="author_id">
-                <option value="">{{__('messages.choose_author')}}</option>
-                @foreach($authors as $author)
-                    <option value="{{ $author->id }}" {{ old('author_id') == $author->id ? 'selected' : '' }}>
-                        {{ $author->first_name }} {{ $author->last_name }}
-                    </option>
-                @endforeach
-            </select>
+            <x-input name="author_id" :label="__('messages.author')" />
             <x-error field="author_id" />
-        </div>
 
-        <br>
-
-        <div>
-            <label for="category_id">{{__('messages.categories')}}</label><br>
-            <select name="category_id" id="category_id">
-                <option value="">{{__('messages.choose_category')}}</option>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
-                @endforeach
-            </select>
+            <x-input name="category_id" :label="__('messages.category')" />
             <x-error field="category_id" />
-        </div>
 
-        <br>
+            <x-input name="publication_year" :label="__('messages.publication_year')" type="number" />
+            <x-error field="publication_year" />
 
-        <x-button type="submit">{{__('messages.save')}}</x-button>
-    </form>
+            <div class="text-center py-3 bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-3xl font-medium transition mt-10">
+                <x-button type="submit">{{ __('messages.save') }}</x-button>
+            </div>
+        </form>
+    </div>
 </x-layout>

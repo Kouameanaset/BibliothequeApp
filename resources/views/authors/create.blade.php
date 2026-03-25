@@ -1,8 +1,9 @@
 <x-layout>
-    <h1>{{ __('messages.add_author') }}</h1>
+    <div class="max-w-xl mx-auto">
+    <h1 class="text-4xl font-bold mb-8">{{ __('messages.add_author') }}</h1>
 
     <p>
-        <a href="{{ route('authors.index') }}">{{ __('messages.back') }}</a>
+        <a href="{{ route('authors.index') }}" class="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 mb-6">← {{ __('messages.back') }}</a>
     </p>
 
     <form action="{{ route('authors.store') }}" method="POST">
@@ -25,7 +26,7 @@
         <br>
 
         <div>
-            <label for="biography">{{ __('messages.biography') }}</label><br>
+            <label for="biography" class="font-semibold text-teal-700">{{ __('messages.biography') }}</label><br>
             <textarea name="biography" id="biography" rows="5" cols="40">{{ old('biography') }}</textarea>
             <x-error field="biography" />
         </div>
@@ -41,6 +42,9 @@
 
         <br>
 
-        <x-button type="submit">{{ __('messages.save') }}</x-button>
+        <div class="text-center py-3 bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-3xl font-medium transition mt-10">
+            <x-button type="submit">{{ __('messages.save') }}</x-button>
+        </div>
     </form>
+    </div>
 </x-layout>

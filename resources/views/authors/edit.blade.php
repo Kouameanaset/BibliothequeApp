@@ -1,9 +1,8 @@
 <x-layout>
-    <h1>{{ __('messages.edit_author') }}</h1>
+    <h1 class="text-4xl font-bold mb-8">{{ __('messages.edit_author') }}</h1>
 
-    <p>
-        <a href="{{ route('authors.index') }}">{{ __('messages.back') }}</a>
-    </p>
+    <a href="{{ route('authors.index') }}" class="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 mb-6">← {{ __('messages.back') }}</a>
+
 
     <form action="{{ route('authors.update', $author) }}" method="POST">
         @csrf
@@ -28,8 +27,10 @@
         <br>
 
         <div>
-            <label for="biography">{{ __('messages.biography') }}</label><br>
-            <textarea name="biography" id="biography" rows="5" cols="40">{{ old('biography', $author->biography) }}</textarea>
+            <label for="biography"
+                   class="block text-teal-700 font-medium py-2">{{ __('messages.biography') }}</label><br>
+            <textarea name="biography" id="biography" rows="5" cols="40"
+                      class="w-full px-5 py-4 border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 rounded-3xl outline-none transition">{{ old('biography', $author->biography) }}</textarea>
             <x-error field="biography" />
         </div>
 
@@ -45,6 +46,7 @@
 
         <br>
 
-        <x-button type="submit">{{ __('messages.update') }}</x-button>
+        <x-button type="submit"
+                  class="flex-1 text-center py-3 text-orange-600 font-medium">{{ __('messages.update') }}</x-button>
     </form>
 </x-layout>

@@ -1,39 +1,22 @@
 <x-layout>
-    <h1>{{ __('messages.list_categories') }}</h1>
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-4xl font-bold">{{ __('messages.list_categories') }}</h1>
+        <a href="{{ route('categories.create') }}"
+           class="bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 rounded-3xl flex items-center gap-3 text-lg font-medium">
+            <i class="fas fa-plus"></i> {{ __('messages.add_category') }}
+        </a>
+    </div>
 
-    <p>
-        <a href="{{ route('categories.create') }}">{{ __('messages.add_category') }}</a>
-    </p>
-
-    <table border="1" cellpadding="8">
-        <thead>
-        <tr>
-            <th>{{ __('messages.name') }}</th>
-            <th>{{ __('messages.number_of_books') }}</th>
-            <th>{{ __('messages.actions') }}</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         @forelse($categories as $category)
-            <tr>
-                <td>{{ $category->name }}</td>
-                <td>{{ $category->books->count() }}</td>
-                <td>
-                    <a href="{{ route('categories.show', $category) }}">{{ __('messages.show') }}</a>
-                    <a href="{{ route('categories.edit', $category) }}">{{ __('messages.edit') }}</a>
-
-                    <form action="{{ route('categories.destroy', $category) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <x-button type="submit">{{ __('messages.delete') }}</x-button>
-                    </form>
-                </td>
-            </tr>
+            <x-category-card
+                name="{{ $category->name }}"
+                bookCount="{{ $category->books->count() }}"
+                showUrl="{{ route('categories.show', $category) }}"
+                editUrl="{{ route('categories.edit', $category) }}"
+                deleteUrl="{{ route('categories.destroy', $category) }}" />
         @empty
-            <tr>
-                <td colspan="3">{{ __('messages.no_categories') }}</td>
-            </tr>
+            <p class="col-span-full text-center text-slate-500 py-12">{{ __('messages.no_categories') }}</p>
         @endforelse
-        </tbody>
-    </table>
+    </div>
 </x-layout>

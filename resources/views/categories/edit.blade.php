@@ -1,11 +1,12 @@
 <x-layout>
-    <h1>{{ __('messages.edit_category') }}</h1>
+    <div class="max-w-xl mx-auto">
+    <h1 class="text-4xl font-bold mb-8">
+        {{ __('messages.edit_category') }}
+    </h1>
+        <a href="{{ route('categories.index') }}" class="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 mb-6">← {{ __('messages.back') }}</a>
 
-    <p>
-        <a href="{{ route('categories.index') }}">{{ __('messages.back') }}</a>
-    </p>
 
-    <form action="{{ route('categories.update', $category) }}" method="POST">
+        <form action="{{ route('categories.update', $category) }}" class="bg-white rounded-3xl shadow-xl p-10">
         @csrf
         @method('PUT')
 
@@ -18,6 +19,8 @@
 
         <br>
 
-        <x-button type="submit">{{ __('messages.update') }}</x-button>
-    </form>
+            <x-button type="submit"
+                      class="flex-1 text-center py-3 text-orange-600 font-medium">{{ __('messages.update') }}</x-button>
+        </form>
+    </div>
 </x-layout>
