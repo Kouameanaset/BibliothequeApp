@@ -13,8 +13,8 @@
         />
         <x-error field="name" />
 
-            <div class="text-center py-3 bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-3xl font-medium transition mt-10">
-            <x-button type="submit">{{ __('messages.save') }}</x-button>
+            <div class="text-center py-3 rounded-3xl mt-10">
+            <x-button class="inline-flex items-center justify-center w-full px-5 py-3 rounded-xl bg-teal-600 text-white font-semibold shadow-sm hover:bg-teal-700 transition" type="submit">{{ __('messages.save') }}</x-button>
             </div>
 
         </form>

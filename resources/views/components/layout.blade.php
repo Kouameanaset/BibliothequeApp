@@ -13,19 +13,22 @@
     <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="w-11 h-11 bg-teal-500 rounded-2xl flex items-center justify-center text-3xl">📖</div>
-            <h1 class="text-3xl font-bold tracking-tight">Library Collective</h1>
+            <a href="{{route('books.index')}}">
+            <h1 class="text-3xl font-bold tracking-tight">{{__('messages.app_name')}}</h1>
+            </a>
         </div>
 
-<nav class="flex items-center gap-10 text-lg font-medium">
-    <a href="{{ route('books.index') }}" class="hover:text-teal-400 transition-colors">{{__('messages.books')}}</a> |
-    <a href="{{ route('authors.index') }}" class="hover:text-teal-400 transition-colors">{{ __('messages.authors') }}</a> |
-    <a href="{{ route('categories.index') }}" class="hover:text-teal-400 transition-colors">{{ __('messages.categories') }}</a>
-</nav>
-    <div class="flex items-center gap-3 text-sm font-medium">
-        <a href="{{ route('lang.switch', 'fr') }}" class="text-teal-400 hover:underline">FR</a>
-        <span class="text-slate-400">|</span>
-        <a href="{{ route('lang.switch', 'en') }}" class="hover:underline">EN</a>
-    </div>
+
+        <nav class="flex items-center gap-10 text-lg font-medium">
+            <a href="{{ route('books.index') }}" class="hover:text-teal-400 transition-colors">{{__('messages.books')}}</a> |
+            <a href="{{ route('authors.index') }}" class="hover:text-teal-400 transition-colors">{{ __('messages.authors') }}</a> |
+            <a href="{{ route('categories.index') }}" class="hover:text-teal-400 transition-colors">{{ __('messages.categories') }}</a>
+        </nav>
+        <div class="flex items-center gap-3 text-sm font-medium">
+            <a href="{{ route('lang.switch', 'fr') }}" class="hover:underline hover:text-teal-400">FR</a>
+            <span class="text-slate-400">|</span>
+            <a href="{{ route('lang.switch', 'en') }}" class="hover:underline hover:text-teal-400">EN</a>
+        </div>
     </div>
 </header>
 
@@ -43,7 +46,6 @@
     {{ $slot }}
 </main>
 
-<!-- Footer -->
 <footer class="bg-slate-900 text-white py-6 text-center text-sm">
     © 2026 - Kouame | Zackary
 </footer>

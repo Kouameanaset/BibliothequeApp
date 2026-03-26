@@ -18,7 +18,7 @@
         <div>
             <label for="description"
                    class="block text-teal-700 font-medium py-2"> {{ __('messages.description') }}</label><br>
-            <textarea name="description" id="description" rows="5" cols="40">{{ old('description', $book->description) }}</textarea>
+            <textarea name="description" id="description" rows="5" class="w-full px-5 py-4 border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 rounded-3xl outline-none transition">{{ old('description', $book->description) }}</textarea>
             <x-error field="description" />
         </div>
 

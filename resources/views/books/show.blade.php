@@ -22,7 +22,7 @@
                         {{ __('messages.edit') }}</a>
                         </p>
 
-                        <form action="{{ route('books.destroy', $book) }}" method="POST">
+                        <form action="{{ route('books.destroy', $book) }}" method="POST" onsubmit="return confirm('{{ __('messages.confirmation_book_delete') }}')">
                         @csrf
                         @method('DELETE')
                         <x-button type="submit" class="flex-1 text-red-700">

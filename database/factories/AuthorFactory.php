@@ -6,6 +6,14 @@ use App\Models\Author;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
+ * Factory pour générer des auteurs fictifs.
+ *
+ * Cette factory utilise Faker pour créer :
+ * - un nom de famille
+ * - un prénom
+ * - une biographie
+ * - une date de naissance
+ *
  * @extends Factory<Author>
  */
 class AuthorFactory extends Factory

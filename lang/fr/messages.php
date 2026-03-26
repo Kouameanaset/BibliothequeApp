@@ -66,4 +66,8 @@ return [
     'category_created' => 'Catégorie ajoutée avec succès.',
     'category_updated' => 'Catégorie modifiée avec succès.',
     'category_deleted' => 'Catégorie supprimée avec succès.',
+
+    'confirmation_book_delete' => 'Etes vous sur que vous voulez suprimer ce livre ?',
+    'confirmation_author_delete' => 'Etes vous sur que vous voulez suprimer cet auteur ?',
+    'confirmation_category_delete' => 'Etes vous sur que vous voulez suprimer cette categorie ?',
 ];

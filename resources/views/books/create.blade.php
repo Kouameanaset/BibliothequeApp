@@ -9,17 +9,43 @@
             <x-input name="title" :label="__('messages.title')" />
             <x-error field="title" />
 
-            <x-input name="author_id" :label="__('messages.author')" />
-            <x-error field="author_id" />
-
-            <x-input name="category_id" :label="__('messages.category')" />
-            <x-error field="category_id" />
+            <div class="mb-4">
+                <label for="description" class="block text-teal-700 font-medium py-2">{{ __('messages.description') }}</label>
+                <textarea name="description" id="description" rows="5" class="w-full px-5 py-4 border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 rounded-3xl outline-none transition">{{ old('description') }}</textarea>
+                <x-error field="description" />
+            </div>
 
             <x-input name="publication_year" :label="__('messages.publication_year')" type="number" />
             <x-error field="publication_year" />
 
-            <div class="text-center py-3 bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-3xl font-medium transition mt-10">
-                <x-button type="submit">{{ __('messages.save') }}</x-button>
+            <div>
+                <label for="author_id" class="block text-teal-700 font-medium py-2">{{ __('messages.author') }}</label>
+                <select name="author_id" id="author_id" class="w-full px-5 py-4 border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 rounded-3xl outline-none transition">
+                    <option value="">Choisir un auteur</option>
+                    @foreach($authors as $author)
+                        <option value="{{ $author->id }}" {{ old('author_id') == $author->id ? 'selected' : '' }}>
+                            {{ $author->first_name }} {{ $author->last_name }}
+                        </option>
+                    @endforeach
+                </select>
+                <x-error field="author_id" />
+            </div>
+
+            <div>
+                <label for="category_id" class="block text-teal-700 font-medium py-2">{{ __('messages.category') }}</label>
+                <select name="category_id" id="category_id" class="w-full px-5 py-4 border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 rounded-3xl outline-none transition">
+                    <option value="">Choisir une catégorie</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <x-error field="category_id" />
+            </div>
+
+            <div class="text-center py-3 rounded-3xl mt-10">
+                <x-button class="inline-flex items-center justify-center w-full px-5 py-3 rounded-xl bg-teal-600 text-white font-semibold shadow-sm hover:bg-teal-700 transition" type="submit">{{ __('messages.save') }}</x-button>
             </div>
         </form>
     </div>

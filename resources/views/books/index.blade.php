@@ -11,14 +11,14 @@
         @forelse($books as $book)
             <x-book-card
                 title="{{ $book->title }}"
-                author="{{ $book->author->name ?? 'Unknown' }}"
+                author="{{ $book->author->first_name ?? 'Unknown' }} {{ $book->author->last_name ?? 'Unknown'}}"
                 category="{{ $book->category->name ?? '—' }}"
                 year="{{ $book->publication_year ?? '—' }}"
                 viewUrl="{{ route('books.show', $book) }}"
                 editUrl="{{ route('books.edit', $book) }}"
                 deleteUrl="{{ route('books.destroy', $book) }}" />
         @empty
-            <p class="col-span-full text-center text-slate-500 py-12">No books yet.</p>
+            <p class="col-span-full text-center text-slate-500 py-12">{{__('messages.no_books')}}</p>
         @endforelse
     </div>
 </x-layout>

@@ -9,6 +9,9 @@ use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+/**
+ * Contrôleur pour gérer les livres.
+ */
 class BookController extends Controller
 {
     /**
@@ -17,7 +20,6 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::with('author', 'category')->get();
-
         return view('books.index', compact('books'));
     }
 
@@ -28,7 +30,6 @@ class BookController extends Controller
     {
         $authors = Author::all();
         $categories = Category::all();
-
         return view('books.create', compact('authors', 'categories'));
     }
 
@@ -37,18 +38,8 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        /*
-        $data = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'publication_year' => 'numeric',
-            'author_id' => 'required',
-            'category_id' => 'required',
-        ]);
-        */
-
         Book::create($request->validated());
-        return redirect()->route('books.index')->with('success', 'Livre ajouté avec succès.');
+        return redirect()->route('books.index')->with('success', __('messages.book_created'));
     }
 
     /**
@@ -57,7 +48,6 @@ class BookController extends Controller
     public function show(Book $book)
     {
         $book->load('author', 'category');
-
         return view('books.show', compact('book'));
     }
 
@@ -68,7 +58,6 @@ class BookController extends Controller
     {
         $authors = Author::orderBy('last_name')->get();
         $categories = Category::orderBy('name')->get();
-
         return view('books.edit', compact('book', 'authors', 'categories'));
     }
 
@@ -77,18 +66,8 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
-        /*
-        $data = $request->validate([
-            'title' => ['required'],
-            'description' => ['required'],
-            'publication_year' => ['numeric'],
-            'author_id' => ['required', 'exists:authors,id'],
-            'category_id' => ['required', 'exists:categories,id'],
-        ]);
-        */
-
         $book->update($request->validated());
-        return redirect()->route('books.index')->with('success', 'Livre modifié avec succès.');
+        return redirect()->route('books.index')->with('success',__('messages.book_updated'));
     }
 
     /**
@@ -97,7 +76,6 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-
-        return redirect()->route('books.index')->with('success', 'Livre supprimé avec succès.');
+        return redirect()->route('books.index')->with('success', __('messages.book_deleted'));
     }
 }

@@ -20,10 +20,10 @@
         <div class="flex items-center justify-between">
             <span class="px-5 py-2 bg-teal-100 text-teal-700 rounded-3xl text-sm">{{ $year }}</span>
 
-            <div class="flex gap-5 font-medium">
+            <div class="flex gap-1 font-medium">
                 <a href="{{ $viewUrl }}" class="text-teal-600 hover:text-teal-700">{{ __('messages.show') }}</a>
                 <a href="{{ $editUrl }}" class="text-amber-600 hover:text-amber-700">{{ __('messages.edit') }}</a>
-                <form action="{{ $deleteUrl }}" method="POST" style="display:inline;" onsubmit="return confirm('Delete this book?')">
+                <form action="{{ $deleteUrl }}" method="POST" style="display:inline;" onsubmit="return confirm('{{ __('messages.confirmation_book_delete') }}')">
                     @csrf
                     @method('DELETE')
                     <x-button type="submit" class="text-red-700 hover:text-red-800">{{ __('messages.delete') }}</x-button>

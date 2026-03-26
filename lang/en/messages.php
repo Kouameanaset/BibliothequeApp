@@ -66,4 +66,8 @@ return [
     'category_created' => 'Category added successfully.',
     'category_updated' => 'Category updated successfully.',
     'category_deleted' => 'Category deleted successfully.',
+
+    'confirmation_book_delete' => 'Are you sure you want to delete this book?',
+    'confirmation_author_delete' => 'Are you sure you want to delete this author?',
+    'confirmation_category_delete' => 'Are you sure you want to delete this category?',
 ];

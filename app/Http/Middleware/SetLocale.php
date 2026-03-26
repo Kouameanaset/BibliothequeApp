@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Middleware SetLocale
+ *
+ * Permet de définir la langue de l'application
+ * en fonction de la session utilisateur.
+ */
 class SetLocale
 {
     /**

@@ -7,6 +7,9 @@ use App\Http\Requests\UpdateAuthorRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
 
+/**
+ * Contrôleur pour gérer les auteurs.
+ */
 class AuthorController extends Controller
 {
     /**
@@ -31,17 +34,8 @@ class AuthorController extends Controller
      */
     public function store(StoreAuthorRequest $request)
     {
-        /*
-        $data = $request->validate([
-            'last_name' => ['required'],
-            'first_name' => ['required'],
-            'biography' => ['required'],
-            'birth_date' => ['required', 'date'],
-        ]);
-        */
-
         Author::create($request->validated());
-        return redirect()->route('authors.index')->with('success', 'Auteur ajouté avec succès.');
+        return redirect()->route('authors.index')->with('success', __('messages.author_created'));
     }
 
     /**
@@ -50,7 +44,6 @@ class AuthorController extends Controller
     public function show(Author $author)
     {
         $author->load('books');
-
         return view('authors.show', compact('author'));
     }
 
@@ -67,17 +60,8 @@ class AuthorController extends Controller
      */
     public function update(UpdateAuthorRequest $request, Author $author)
     {
-        /*
-        $data = $request->validate([
-            'last_name' => ['required'],
-            'first_name' => ['required'],
-            'biography' => ['required'],
-            'birth_date' => ['required', 'date'],
-        ]);
-        */
-
         $author->update($request->validated());
-        return redirect()->route('authors.index')->with('success', 'Auteur modifié avec succès.');
+        return redirect()->route('authors.index')->with('success', __('messages.category_updated'));
     }
 
     /**
@@ -86,7 +70,6 @@ class AuthorController extends Controller
     public function destroy(Author $author)
     {
         $author->delete();
-
-        return redirect()->route('authors.index')->with('success', 'Auteur supprimé avec succès.');
+        return redirect()->route('authors.index')->with('success', __('messages.category_deleted'));
     }
 }

@@ -27,7 +27,7 @@
 
         <div>
             <label for="biography" class="font-semibold text-teal-700">{{ __('messages.biography') }}</label><br>
-            <textarea name="biography" id="biography" rows="5" cols="40">{{ old('biography') }}</textarea>
+            <textarea name="biography" id="biography" rows="5" cols="40" class="w-full px-5 py-4 border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 rounded-3xl outline-none transition">{{ old('biography') }}</textarea>
             <x-error field="biography" />
         </div>
 
@@ -42,8 +42,8 @@
 
         <br>
 
-        <div class="text-center py-3 bg-teal-100 hover:bg-teal-200 text-teal-700 rounded-3xl font-medium transition mt-10">
-            <x-button type="submit">{{ __('messages.save') }}</x-button>
+        <div class="text-center py-3 rounded-3xl mt-10">
+            <x-button class="inline-flex items-center justify-center w-full px-5 py-3 rounded-xl bg-teal-600 text-white font-semibold shadow-sm hover:bg-teal-700 transition" type="submit">{{ __('messages.save') }}</x-button>
         </div>
     </form>
     </div>

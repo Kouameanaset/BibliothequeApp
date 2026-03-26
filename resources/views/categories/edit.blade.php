@@ -6,7 +6,7 @@
         <a href="{{ route('categories.index') }}" class="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 mb-6">← {{ __('messages.back') }}</a>
 
 
-        <form action="{{ route('categories.update', $category) }}" class="bg-white rounded-3xl shadow-xl p-10">
+        <form action="{{ route('categories.update', $category) }}" method="POST" class="bg-white rounded-3xl shadow-xl p-10">
         @csrf
         @method('PUT')
 

@@ -16,7 +16,7 @@
                 editUrl="{{ route('authors.edit', $author) }}"
                 deleteUrl="{{ route('authors.destroy', $author) }}" />
         @empty
-            <p class="col-span-full text-center text-slate-500 py-12">No authors yet.</p>
+            <p class="col-span-full text-center text-slate-500 py-12">{{__('messages.no_authors')}}</p>
         @endforelse
     </div>
 </x-layout>

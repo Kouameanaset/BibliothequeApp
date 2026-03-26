@@ -7,6 +7,9 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+/**
+ * Contrôleur pour gérer les categories.
+ */
 class CategoryController extends Controller
 {
     /**
@@ -15,7 +18,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::with('books')->get();
-
         return view('categories.index', compact('categories'));
     }
 
@@ -32,14 +34,8 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        /*
-        $data = $request->validate([
-            'name' => ['required'],
-        ]);
-        */
-
         Category::create($request->validated());
-        return redirect()->route('categories.index')->with('success', 'Catégorie ajoutée avec succès.');
+        return redirect()->route('categories.index')->with('success', __('messages.category_created'));
     }
 
     /**
@@ -48,7 +44,6 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $category->load('books');
-
         return view('categories.show', compact('category'));
     }
 
@@ -65,14 +60,8 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        /*
-        $data = $request->validate([
-            'name' => ['required'],
-        ]);
-        */
-
         $category->update($request->validated());
-        return redirect()->route('categories.index')->with('success', 'Catégorie modifiée avec succès.');
+        return redirect()->route('categories.index')->with('success', __('messages.category_updated'));
     }
 
     /**
@@ -81,7 +70,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-
-        return redirect()->route('categories.index')->with('success', 'Catégorie supprimée avec succès.');
+        return redirect()->route('categories.index')->with('success', __('messages.category_deleted'));
     }
 }

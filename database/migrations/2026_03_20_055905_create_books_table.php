@@ -4,6 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Migration pour la création de la table "books".
+ *
+ * Cette table contient les informations des livres :
+ * - titre
+ * - description
+ * - année de publication
+ * - relation avec un auteur
+ * - relation avec une catégorie
+ *
+ * Relations :
+ * - Un livre appartient à un auteur (author_id)
+ * - Un livre appartient à une catégorie (category_id)
+ */
 return new class extends Migration
 {
     /**

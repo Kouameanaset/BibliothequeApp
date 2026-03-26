@@ -21,7 +21,7 @@
                     <a href="{{ route('categories.edit', $category) }} " class="flex-1 text-center text-amber-700">{{ __('messages.edit') }}</a>
                 </p>
 
-                    <form action="{{ route('categories.destroy', $category) }}" class="flex-1 text-red-700" method="POST">
+                    <form action="{{ route('categories.destroy', $category) }}" class="flex-1 text-red-700" method="POST" onsubmit="return confirm('{{ __('messages.confirmation_category_delete') }}')">
                         @csrf
                         @method('DELETE')
                         <x-button type="submit">{{ __('messages.delete') }}</x-button>

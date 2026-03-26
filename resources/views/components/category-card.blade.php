@@ -1,3 +1,12 @@
+@props([
+    'name',
+    'bookCount',
+    'showUrl',
+    'editUrl',
+    'deleteUrl',
+
+])
+
 <div class="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
     <div class="p-6">
         <h3 class="font-semibold text-2xl mb-2">{{ $name }}</h3>
@@ -6,7 +15,7 @@
         <div class="flex gap-4">
             <a href="{{ $showUrl }}" class="flex-1 text-center py-3 bg-teal-100 text-teal-700 rounded-2xl font-medium">{{ __('messages.show') }}</a>
             <a href="{{ $editUrl }}" class="flex-1 text-center py-3 bg-amber-100 text-amber-700 rounded-2xl font-medium">{{ __('messages.edit') }}</a>
-            <form action="{{ $deleteUrl }}" method="POST" style="display:inline;" onsubmit="return confirm('{{ __('messages.delete_confirm') }}')">
+            <form action="{{ $deleteUrl }}" method="POST" style="display:inline;" onsubmit="return confirm('{{ __('messages.confirmation_category_delete') }}')">
                 @csrf
                 @method('DELETE')
                 <x-button type="submit" class="flex-1 w-full py-3 px-3 bg-red-100 hover:bg-red-200 text-red-700 rounded-3xl font-medium transition">

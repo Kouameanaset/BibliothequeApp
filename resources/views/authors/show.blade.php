@@ -26,7 +26,7 @@
                 <a href="{{ route('authors.edit', $author) }}" class="flex-1 text-center text-amber-700">{{ __('messages.edit') }}</a>
             </p>
 
-        <form action="{{ route('authors.destroy', $author) }}" class="flex-1 text-red-700" method="POST">
+        <form action="{{ route('authors.destroy', $author) }}" class="flex-1 text-red-700" method="POST" onsubmit="return confirm('{{ __('messages.confirmation_author_delete') }}')">
             @csrf
             @method('DELETE')
             <x-button type="submit">{{ __('messages.delete') }}</x-button>

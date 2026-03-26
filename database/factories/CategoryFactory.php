@@ -6,6 +6,11 @@ use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
+ * Factory pour générer des catégories fictives.
+ *
+ * Cette factory crée des catégories avec des noms réalistes
+ * pour une bibliothèque (ex: Roman, Science, Histoire, etc.).
+ *
  * @extends Factory<Category>
  */
 class CategoryFactory extends Factory

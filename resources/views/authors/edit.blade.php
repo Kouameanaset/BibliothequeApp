@@ -1,52 +1,54 @@
 <x-layout>
-    <h1 class="text-4xl font-bold mb-8">{{ __('messages.edit_author') }}</h1>
+    <div class="max-w-xl mx-auto">
+        <h1 class="text-4xl font-bold mb-8">{{ __('messages.edit_author') }}</h1>
 
-    <a href="{{ route('authors.index') }}" class="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 mb-6">← {{ __('messages.back') }}</a>
+        <a href="{{ route('authors.index') }}" class="inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 mb-6">← {{ __('messages.back') }}</a>
 
 
-    <form action="{{ route('authors.update', $author) }}" method="POST">
-        @csrf
-        @method('PUT')
+        <form action="{{ route('authors.update', $author) }}" method="POST" class="bg-white rounded-3xl shadow-xl p-10">
+            @csrf
+            @method('PUT')
 
-        <x-input
-            name="last_name"
-            :label="__('messages.last_name')"
-            :value="$author->last_name"
-        />
-        <x-error field="last_name" />
+            <x-input
+                name="last_name"
+                :label="__('messages.last_name')"
+                :value="$author->last_name"
+            />
+            <x-error field="last_name" />
 
-        <br>
+            <br>
 
-        <x-input
-            name="first_name"
-            :label="__('messages.first_name')"
-            :value="$author->first_name"
-        />
-        <x-error field="first_name" />
+            <x-input
+                name="first_name"
+                :label="__('messages.first_name')"
+                :value="$author->first_name"
+            />
+            <x-error field="first_name" />
 
-        <br>
+            <br>
 
-        <div>
-            <label for="biography"
-                   class="block text-teal-700 font-medium py-2">{{ __('messages.biography') }}</label><br>
-            <textarea name="biography" id="biography" rows="5" cols="40"
-                      class="w-full px-5 py-4 border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 rounded-3xl outline-none transition">{{ old('biography', $author->biography) }}</textarea>
-            <x-error field="biography" />
-        </div>
+            <div>
+                <label for="biography"
+                       class="block text-teal-700 font-medium py-2">{{ __('messages.biography') }}</label><br>
+                <textarea name="biography" id="biography" rows="5" cols="40"
+                          class="w-full px-5 py-4 border border-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 rounded-3xl outline-none transition">{{ old('biography', $author->biography) }}</textarea>
+                <x-error field="biography" />
+            </div>
 
-        <br>
+            <br>
 
-        <x-input
-            name="birth_date"
-            :label="__('messages.birth_date')"
-            type="date"
-            :value="$author->birth_date"
-        />
-        <x-error field="birth_date" />
+            <x-input
+                name="birth_date"
+                :label="__('messages.birth_date')"
+                type="date"
+                :value="$author->birth_date"
+            />
+            <x-error field="birth_date" />
 
-        <br>
+            <br>
 
-        <x-button type="submit"
-                  class="flex-1 text-center py-3 text-orange-600 font-medium">{{ __('messages.update') }}</x-button>
-    </form>
+            <x-button type="submit"
+                      class="flex-1 text-center py-3 text-orange-600 font-medium">{{ __('messages.update') }}</x-button>
+        </form>
+    </div>
 </x-layout>

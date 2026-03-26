@@ -5,6 +5,9 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Requête pour la mise à jour d’une category.
+ */
 class UpdateCategoryRequest extends FormRequest
 {
     /**

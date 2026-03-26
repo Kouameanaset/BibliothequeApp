@@ -4,6 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Migration pour la création de la table "authors".
+ *
+ * Cette table contient les informations des auteurs :
+ * - nom
+ * - prénom
+ * - biographie
+ * - date de naissance
+ *
+ * Relations :
+ * - Un auteur peut avoir plusieurs livres
+ *   (relation one-to-many avec la table "books")
+ */
 return new class extends Migration
 {
     /**
